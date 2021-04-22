@@ -35,7 +35,7 @@ public class FileListenerRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        File file = FileUtil.file("E:\\TxRec");
+        File file = FileUtil.file("D:\\TxRec");
         //这里只监听文件或目录的创建和删除事件
         WatchMonitor watchMonitor = WatchMonitor.create(file, WatchMonitor.ENTRY_CREATE,WatchMonitor.ENTRY_DELETE);
         watchMonitor.setWatcher(new Watcher(){
