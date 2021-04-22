@@ -1,0 +1,65 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /sd-duty
+spring:
+  application:
+    name: shandong-duty
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:      # 密码（默认为空）
+    timeout: 6000  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+    # 数据源配置
+  datasource:
+    url: jdbc:sqlserver://10.37.1.19:1433;Databasename=shandong_cfg
+    username: 17sa
+    password: wq6694!
+
+mybatis-plus:
+  # global-config:
+  #   db-config:
+  #     id-type: auto
+  configuration:
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+
+#日志
+logging:
+  level: 
+    root: warn
+  config: classpath:log/logback.xml
+  file:
+    path: D:\log\duty_system
+
+duty:
+#  allowedOrigins: http://127.0.0.1:5500
+  file-root-path:  D:/shandong_server/excel/
+  file-host: http://10.37.1.17:9003/excel-download/
+
+excel:
+  path: excel/
+  host: http://10.37.1.17:9003/excel-download/
+
+email:
+  mailServerPOP3Host: pop.163.com
+  mailServerSMTPHost: smtp.163.com
+  myEmailAddress: sdswsqk@163.com
+  userName: sdswsqk
+  # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
+  password: XCBAHJVMCJJTKJYO
+  # myEmailAddress = dirac_007@163.com
+  # userName = dirac_007
+  # # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
+  # password = APYDOSTDPDUOEEHQ
+  validate: true
+  file-path: D:/shandong_server/excel/email/
+  host: http://10.37.1.17:9003/excel-download/email/

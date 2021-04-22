@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active:
+      - dev
+
+  #���ӳ�����
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    druid:
+      validation-query: SELECT 1
+      initial-size: 10
+      min-idle: 10
+      max-active: 200
+      min-evictable-idle-time-millis: 180000
+      test-on-borrow: false
+      remove-abandoned: true
+      remove-abandoned-timeout-millis: 1800
+      log-abandoned: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 100
+  #��������
+  cache:
+    type: redis
+    cache-names: duty_system
+
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+
+#mybatisPlus
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+  global-config:
+    db-config:
+      id-type: auto
+
+
+
+
+
+
+# Ĭ��������������
+# java -jar xxx.jar
+# ��������
+# java -jar xxx.jar --spring.profiles.active=test
+# ��������
+# java -jar xxx.jar --spring.profiles.active=pro
