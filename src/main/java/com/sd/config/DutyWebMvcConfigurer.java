@@ -50,7 +50,8 @@ public class DutyWebMvcConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(new MyHandlerInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/api/login","/api/systemLogout","/api/dutyQuery/getDutyBb","/api/getDuty","/api/file/GetDutyDoc",
-                        "/api/file/GetDutyMat","/api/file/GetDutyAnno","/api/email/getEmails","/api/communication/getCommunication","/api/getDutyForDp");
+                        "/api/file/GetDutyMat","/api/file/GetDutyAnno","/api/email/getEmails","/api/communication/getCommunication","/api/getDutyForDp",
+                        "/api/phone/getCommunication","/api/phone/getDutyBb");
 
     }
 }

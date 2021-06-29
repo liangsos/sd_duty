@@ -86,6 +86,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/api/communication/getCommunication","anon");
         filterChainDefinitionMap.put("/api/getTelFile","anon");
         filterChainDefinitionMap.put("/api/getDutyForDp","anon");
+        filterChainDefinitionMap.put("/api/phone/getCommunication","anon");
+        filterChainDefinitionMap.put("/api/phone/getDutyBb","anon");
 //        filterChainDefinitionMap.put("/**","anon");
         filterChainDefinitionMap.put("/**","authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
