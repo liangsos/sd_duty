@@ -43,13 +43,13 @@ public class ShiroConfig {
     private Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     @Value("${spring.redis.host}")
-    private String jedisHost;
+    private String redisHost;
 
     @Value("${spring.redis.port}")
-    private Integer jedisPort;
+    private Integer redisPort;
 
     @Value("${spring.redis.password}")
-    private String jedisPassword;
+    private String redisPassword;
 
     @Value("${spring.redis.timeout}")
     private int timeout;
@@ -77,18 +77,20 @@ public class ShiroConfig {
         LinkedHashMap<String, String> filterChainDefinitionMap = Maps.newLinkedHashMap();
         filterChainDefinitionMap.put("/api/log/**","anon");
         filterChainDefinitionMap.put("/api/login","anon");
-        filterChainDefinitionMap.put("/api/file/GetDutyDoc","anon");
-        filterChainDefinitionMap.put("/api/file/GetDutyMat","anon");
-        filterChainDefinitionMap.put("/api/file/GetDutyAnno","anon");
-        filterChainDefinitionMap.put("/api/dutyQuery/getDutyBb","anon");
-        filterChainDefinitionMap.put("/api/email/getEmails","anon");
-        filterChainDefinitionMap.put("/api/getDuty","anon");
-        filterChainDefinitionMap.put("/api/communication/getCommunication","anon");
-        filterChainDefinitionMap.put("/api/getTelFile","anon");
-        filterChainDefinitionMap.put("/api/getDutyForDp","anon");
-        filterChainDefinitionMap.put("/api/phone/getCommunication","anon");
-        filterChainDefinitionMap.put("/api/phone/getDutyBb","anon");
+//        filterChainDefinitionMap.put("/api/file/GetDutyDoc","anon");
+//        filterChainDefinitionMap.put("/api/file/GetDutyMat","anon");
+//        filterChainDefinitionMap.put("/api/file/GetDutyAnno","anon");
+//        filterChainDefinitionMap.put("/api/dutyQuery/getDutyBb","anon");
+//        filterChainDefinitionMap.put("/api/email/getEmails","anon");
+//        filterChainDefinitionMap.put("/api/getDuty","anon");
+//        filterChainDefinitionMap.put("/api/communication/getCommunication","anon");
+//        filterChainDefinitionMap.put("/api/getTelFile","anon");
+//        filterChainDefinitionMap.put("/api/getDutyForDp","anon");
+//        filterChainDefinitionMap.put("/api/phone/getCommunication","anon");
+//        filterChainDefinitionMap.put("/api/phone/getDutyBb","anon");
 //        filterChainDefinitionMap.put("/**","anon");
+        filterChainDefinitionMap.put("/api/getAddvcdStcd","anon");
+        filterChainDefinitionMap.put("/api/getCommunicationNew","anon");
         filterChainDefinitionMap.put("/**","authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
@@ -156,9 +158,11 @@ public class ShiroConfig {
      */
     @Bean
     public SessionManager webSessionManager(){
+        logger.info("- - - - - - -sessionManager开始加载- - - - - - ");
         MySessionManager mySessionManager = new MySessionManager();
-        //设置session过期时间为1小时(单位：毫秒)，默认为30分钟
-        mySessionManager.setGlobalSessionTimeout(60 * 60 * 1000);
+//        DefaultWebSessionManager mySessionManager = new DefaultWebSessionManager();
+        //设置session过期时间为1小时(单位：毫秒)，默认为30分钟 改为2小时
+        mySessionManager.setGlobalSessionTimeout(2 * 60 * 60 * 1000);
         mySessionManager.setSessionValidationSchedulerEnabled(true);
         mySessionManager.setSessionDAO(redisSessionDAO());
         return mySessionManager;
@@ -168,7 +172,7 @@ public class ShiroConfig {
     public RedisManager redisManager(){
         RedisManager manager = new RedisManager();
         GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        JedisPool jedisPool = new JedisPool(genericObjectPoolConfig,jedisHost,jedisPort,timeout);
+        JedisPool jedisPool = new JedisPool(genericObjectPoolConfig,redisHost,redisPort,timeout);
         manager.setJedisPool(jedisPool);
         return manager;
     }

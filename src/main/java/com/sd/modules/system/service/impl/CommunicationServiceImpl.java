@@ -22,8 +22,11 @@ public class CommunicationServiceImpl implements CommunicationService {
 
     @Override
     public List<Communication> getCommunication() {
+        String addvcd = "37";
         AuthRealm.ShiroUser user = (AuthRealm.ShiroUser) SecurityUtils.getSubject().getPrincipal();
-        String addvcd = user.getAddvcd();
+        if (user != null){
+            addvcd = user.getAddvcd();
+        }
         QueryWrapper<Communication> qw = new QueryWrapper<>();
         qw.select().eq("addvcd",addvcd);
         List<Communication> list = communicationMapper.selectList(qw);

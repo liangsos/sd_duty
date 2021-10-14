@@ -51,7 +51,7 @@ public class DutyWebMvcConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/api/login","/api/systemLogout","/api/dutyQuery/getDutyBb","/api/getDuty","/api/file/GetDutyDoc",
                         "/api/file/GetDutyMat","/api/file/GetDutyAnno","/api/email/getEmails","/api/communication/getCommunication","/api/getDutyForDp",
-                        "/api/phone/getCommunication","/api/phone/getDutyBb");
+                        "/api/phone/getCommunication","/api/phone/getDutyBb","/api/getAddvcdStcd","/api/getCommunicationNew");
 
     }
 }

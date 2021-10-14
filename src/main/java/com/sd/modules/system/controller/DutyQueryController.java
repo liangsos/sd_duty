@@ -107,10 +107,10 @@ public class DutyQueryController {
         List<DutyRecord> listDutyToday = dutyBbService.getDutyRecordToday(date);
         //获取防汛抗旱工作
         List<DutyFxkh> listDutyFxkh = dutyBbService.getFxkhByTime(date);
-        //获取来得记录
+        //获取来电记录
         List<DutyRecordTel> listTel = dutyBbService.getDutyRecordTel(date);
         //会商记录
-        List<Map<String,Object>> listConsult = dutyBbService.getDutyConsultByTime(date);
+//        List<Map<String,Object>> listConsult = dutyBbService.getDutyConsultByTime(date);
 
         Map<String,Object> dutyMap = Maps.newHashMap();
         if (listDutyToday.size() > 0){
@@ -119,25 +119,37 @@ public class DutyQueryController {
         }
 
         //拼接html
-        String str_html = "<span class='title_span'>一、雨水情</span></br>";
+        String str_html = "<span class='title_span'>一、值班概况</span></br>";
         if (listDutyFxkh.size() > 0){
-            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getWaterInfo())){
-                str_html += "<span>水情信息：</br>" + listDutyFxkh.get(0).getWaterInfo() + "</span></br>";
-            }
-            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getWaterMain())){
-                str_html += "<span>主要站点水情：</br>" + listDutyFxkh.get(0).getWaterMain() + "</span></br>";
-             }
-            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getRainInfo())){
-                str_html += "<span>雨情信息：</br>" + listDutyFxkh.get(0).getRainInfo() + "</span></br>";
-            }
+//            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getWaterInfo())){
+//                str_html += "<span>水情信息：</br>" + listDutyFxkh.get(0).getWaterInfo() + "</span></br>";
+//            }
+//            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getWaterMain())){
+//                str_html += "<span>主要站点水情：</br>" + listDutyFxkh.get(0).getWaterMain() + "</span></br>";
+//             }
             if (StringUtils.isNotBlank(listDutyFxkh.get(0).getRainMain())){
-                str_html += "<span>最大雨量点：</br>" + listDutyFxkh.get(0).getRainMain() + "</span></br>";
+                str_html += "<span>" + listDutyFxkh.get(0).getRainMain() + "</span></br>";
             }
+//            if (StringUtils.isNotBlank(listDutyFxkh.get(0).getRainMain())){
+//                str_html += "<span>最大雨量点：</br>" + listDutyFxkh.get(0).getRainMain() + "</span></br>";
+//            }
         }else {
             str_html += "<span>       无。</span></br>";
         }
+        str_html += "<span class='title_span'>二、雨情</span></br>";
+        if (StringUtils.isNotBlank(listDutyFxkh.get(0).getRainInfo())){
+            str_html += "<span>" + listDutyFxkh.get(0).getRainInfo() + "</span></br>";
+        }else{
+            str_html += "<span>       无。</span></br>";
+        }
+        str_html += "<span class='title_span'>二、水情</span></br>";
+        if (StringUtils.isNotBlank(listDutyFxkh.get(0).getWaterMain())){
+            str_html += "<span>" + listDutyFxkh.get(0).getWaterMain() + "</span></br>";
+        }else{
+            str_html += "<span>       无。</span></br>";
+        }
         //电话记录
-        str_html += "<span class='title_span'>二、电话记录</span></br>";
+        str_html += "<span class='title_span'>三、电话记录</span></br>";
         if (listTel.size() > 0){
             for (DutyRecordTel map : listTel) {
                 str_html += "<div class='bb_info_title_time'><span>" +  sf.format(map.getUpdateDate()) +" </span></div>";
@@ -148,43 +160,43 @@ public class DutyQueryController {
             str_html += "<span>" + "       无。" + "</span></br>";
         }
         //会商记录
-        str_html += "<span class='title_span'>四、会商记录</span></br>";
-        if (listConsult.size() > 0 || listDutyFxkh.size() > 0)
-        {
-            //值班记录中的会商信息
-            if (listDutyFxkh.size() > 0)
-            {
-                str_html += "<span>" + listDutyFxkh.get(0).getConsultTitle() + ":" + listDutyFxkh.get(0).getConsult() + "</span></br>"; ;
-            }
-
-            //文件管理中的会商信息
-            if (listConsult.size() > 0)
-            {
-                for (Map<String, Object> map : listConsult) {
-                    str_html += "<span>" + sf1.format(map.get("beginTime")) + "在" + map.get("place") +"，由" + map.get("host").toString().trim()
-                            + "主持。参加人员:" + map.get("attendees").toString().trim() + ",参加人数:" + map.get("attend").toString().trim()
-                            + ",会商内容:" + map.get("content").toString().trim() + " (记录人:" + map.get("realName")+ ")</span></br>";
-                }
-            }
-        } else {
-            str_html += "<span>" + "       无。" + "</span></br>";
-        }
+//        str_html += "<span class='title_span'>四、会商记录</span></br>";
+//        if (listConsult.size() > 0 || listDutyFxkh.size() > 0)
+//        {
+//            //值班记录中的会商信息
+//            if (listDutyFxkh.size() > 0)
+//            {
+//                str_html += "<span>" + listDutyFxkh.get(0).getConsultTitle() + ":" + listDutyFxkh.get(0).getConsult() + "</span></br>"; ;
+//            }
+//
+//            //文件管理中的会商信息
+//            if (listConsult.size() > 0)
+//            {
+//                for (Map<String, Object> map : listConsult) {
+//                    str_html += "<span>" + sf1.format(map.get("beginTime")) + "在" + map.get("place") +"，由" + map.get("host").toString().trim()
+//                            + "主持。参加人员:" + map.get("attendees").toString().trim() + ",参加人数:" + map.get("attend").toString().trim()
+//                            + ",会商内容:" + map.get("content").toString().trim() + " (记录人:" + map.get("realName")+ ")</span></br>";
+//                }
+//            }
+//        } else {
+//            str_html += "<span>" + "       无。" + "</span></br>";
+//        }
 
         //工情灾情
-        str_html += "<span class='title_span'>五、工情灾情</span></br>";
-        if (listDutyFxkh.size() > 0 && StringUtils.isNotBlank(listDutyFxkh.get(0).getDisaster())) {
-            str_html += "<span>" + listDutyFxkh.get(0).getDisaster() + "</span></br>"; ;
-        } else {
-            str_html += "<span>" + "       无。" + "</span></br>";
-        }
+//        str_html += "<span class='title_span'>五、工情灾情</span></br>";
+//        if (listDutyFxkh.size() > 0 && StringUtils.isNotBlank(listDutyFxkh.get(0).getDisaster())) {
+//            str_html += "<span>" + listDutyFxkh.get(0).getDisaster() + "</span></br>"; ;
+//        } else {
+//            str_html += "<span>" + "       无。" + "</span></br>";
+//        }
 
         //防汛抗旱行动
-        str_html += "<span class='title_span'>六、防汛抗旱行动</span></br>";
-        if (listDutyFxkh.size() > 0  && StringUtils.isNotBlank(listDutyFxkh.get(0).getAction())) {
-            str_html += "<span>" + listDutyFxkh.get(0).getAction() + "</span></br>"; ;
-        } else {
-            str_html += "<span>" + "       无。" + "</span></br>";
-        }
+//        str_html += "<span class='title_span'>六、防汛抗旱行动</span></br>";
+//        if (listDutyFxkh.size() > 0  && StringUtils.isNotBlank(listDutyFxkh.get(0).getAction())) {
+//            str_html += "<span>" + listDutyFxkh.get(0).getAction() + "</span></br>"; ;
+//        } else {
+//            str_html += "<span>" + "       无。" + "</span></br>";
+//        }
 
         dutyMap.put("infoBody",str_html);
 
