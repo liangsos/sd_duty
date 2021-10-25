@@ -5,6 +5,12 @@ server:
 spring:
   application:
     name: shandong-duty
+  mvc:
+    static-path-pattern: /
+    web:
+      resources:
+        static-locations:
+          - file:dutyFile/
 
   redis:
     database: 0
@@ -44,11 +50,11 @@ duty:
 #  allowedOrigins: http://127.0.0.1:5500
 #  file-root-path:  D:/shandong_server/excel/
   file-root-path:  D:/sdsq/dutyFile/
-  file-host: http://10.37.1.155:9003/dutyFile/
+  file-host: http://10.37.1.155:9003/sd-duty/dutyFile/
 
 excel:
   path: excel/
-  host: http://10.37.1.155:9003/excel-download/
+  host: http://10.37.1.155:9003/sd-duty/dutyFile/
 
 email:
   mailServerPOP3Host: pop.163.com

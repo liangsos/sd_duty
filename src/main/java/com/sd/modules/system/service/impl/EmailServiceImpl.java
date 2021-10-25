@@ -227,7 +227,7 @@ public class EmailServiceImpl implements EmailService {
     /**
      * 读取邮件定时任务
      */
-    @Scheduled(initialDelay = 5 * 1000, fixedDelay = 60 * 60 * 1000)
+    // @Scheduled(initialDelay = 5 * 1000, fixedDelay = 60 * 60 * 1000)
     public void readEmailSecheduled() {
         List<EmailInfo> emailInfos = getAllEmailInfos();
         Date now = new Date();
