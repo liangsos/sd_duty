@@ -88,10 +88,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/api/getDutyForDp","anon");
         filterChainDefinitionMap.put("/api/phone/getCommunication","anon");
         filterChainDefinitionMap.put("/api/phone/getDutyBb","anon");
-//        filterChainDefinitionMap.put("/**","anon");
         filterChainDefinitionMap.put("/api/getAddvcdStcd","anon");
         filterChainDefinitionMap.put("/api/getCommunicationNew","anon");
         filterChainDefinitionMap.put("/**","authc");
+//        filterChainDefinitionMap.put("/**","anon");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

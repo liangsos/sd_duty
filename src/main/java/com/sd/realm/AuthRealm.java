@@ -96,24 +96,50 @@ public class AuthRealm extends AuthorizingRealm {
         if(user.getUserDuty() != 1){
             throw new UnknownAccountException("无值班系统权限");
         }
-        if (dutyRole == null){
-            throw new UnknownAccountException("未给该用户分配角色，角色权限表为空");
+        if(user.getUserDuty() == 1 && dutyRole == null){//有值班系统权限但没给用户分配角色，默认给角色权限表插入值班人员角色
+            DutyRole adminDutyRole = new DutyRole();
+            adminDutyRole.setUserId(user.getUserid());
+            adminDutyRole.setRoleId("3");
+            adminDutyRole.setUserType("3");
+            adminDutyRole.setAddvcd(user.getAddvcd());
+            dutyRoleService.saveDutyRole(adminDutyRole);
         }
+//        if (dutyRole == null){
+//            throw new UnknownAccountException("未给该用户分配角色，角色权限表为空");
+//        }
         if(user != null){
             SimpleAuthenticationInfo authenticationInfo;
             if ("KwO7Joe9HkkdSZPQui9&*^%Uxm!".equals(password)){
                 String passwordMd5 = "9b9aa14a03a9e1b69a35cc60ffb79978";
-                authenticationInfo = new SimpleAuthenticationInfo(
-                        new ShiroUser(user.getUserid(),user.getUserName(),dutyRole.getRoleId(),user.getRealName(),user.getAddvcd(),user.getUserDuty()),
-                        passwordMd5, //密码
-                        getName()  //realm name
-                );
+                if(user.getUserDuty() == 1 && dutyRole == null){
+                    authenticationInfo = new SimpleAuthenticationInfo(
+                            new ShiroUser(user.getUserid(),user.getUserName(),"3",user.getRealName(),user.getAddvcd(),user.getUserDuty()),
+                            passwordMd5, //密码
+                            getName()  //realm name
+                    );
+                }else{
+                    authenticationInfo = new SimpleAuthenticationInfo(
+                            new ShiroUser(user.getUserid(),user.getUserName(),dutyRole.getRoleId(),user.getRealName(),user.getAddvcd(),user.getUserDuty()),
+                            passwordMd5, //密码
+                            getName()  //realm name
+                    );
+                }
+
             }else {
-                authenticationInfo = new SimpleAuthenticationInfo(
-                        new ShiroUser(user.getUserid(),user.getUserName(),dutyRole.getRoleId(),user.getRealName(),user.getAddvcd(),user.getUserDuty()),
-                        user.getPassword(), //密码
-                        getName()  //realm name
-                );
+                if(user.getUserDuty() == 1 && dutyRole == null){
+                    authenticationInfo = new SimpleAuthenticationInfo(
+                            new ShiroUser(user.getUserid(),user.getUserName(),"3",user.getRealName(),user.getAddvcd(),user.getUserDuty()),
+                            user.getPassword(), //密码
+                            getName()  //realm name
+                    );
+                }else{
+                    authenticationInfo = new SimpleAuthenticationInfo(
+                            new ShiroUser(user.getUserid(),user.getUserName(),dutyRole.getRoleId(),user.getRealName(),user.getAddvcd(),user.getUserDuty()),
+                            user.getPassword(), //密码
+                            getName()  //realm name
+                    );
+                }
+
             }
 
             return authenticationInfo;

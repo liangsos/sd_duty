@@ -44,6 +44,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Chen Hualiang
  * @create 2020-10-10 10:13
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @Api(tags = "登录相关")

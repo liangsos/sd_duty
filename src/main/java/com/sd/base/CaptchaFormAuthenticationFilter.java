@@ -35,10 +35,10 @@ public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         HttpServletResponse res = (HttpServletResponse)response;
 //        res.setHeader("Access-Control-Allow-Origin", Constants.ALLOWEDORIGINS);
-        res.setHeader("Access-Control-Allow-Origin", "*");
+//        res.setHeader("Access-Control-Allow-Origin", "*");
 //        res.setHeader("Access-Control-Allow-Methods","GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,PATCH");
 //        res.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type,Accept, Authorization");
-        res.setHeader("Access-Control-Allow-Credentials","true");
+//        res.setHeader("Access-Control-Allow-Credentials","true");
         if(request instanceof HttpServletRequest){
             if(((HttpServletRequest) request).getMethod().toUpperCase().equals("OPTIONS")){
                 res.addHeader("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,DELETE,TRACE,OPTIONS,PATCH");
@@ -63,7 +63,7 @@ public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletResponse res = (HttpServletResponse)response;
 //        res.setHeader("Access-Control-Allow-Origin", Constants.ALLOWEDORIGINS);
-        res.setHeader("Access-Control-Allow-Origin", "*");
+//        res.setHeader("Access-Control-Allow-Origin", "*");
         res.setStatus(HttpServletResponse.SC_OK);
         res.setCharacterEncoding("UTF-8");
         RestResponse restResponse = RestResponse.failure("未登录").setCode(-1);

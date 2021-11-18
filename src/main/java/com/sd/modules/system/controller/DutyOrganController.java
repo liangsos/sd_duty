@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/dutyOrgan")
+@CrossOrigin
 @Api(tags = "机构管理")
 public class DutyOrganController {
 

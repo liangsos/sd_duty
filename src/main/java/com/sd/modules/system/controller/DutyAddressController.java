@@ -25,6 +25,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/dutyAddress")
+@CrossOrigin
 @Api(tags = "值班IP管理")
 public class DutyAddressController {
 

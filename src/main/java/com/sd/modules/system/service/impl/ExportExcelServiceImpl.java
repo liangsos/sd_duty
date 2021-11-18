@@ -65,7 +65,7 @@ public class ExportExcelServiceImpl implements ExportExcelService {
             savefile.mkdirs();
         }
         String fileName = "值班表" + DateUtil.format(DateUtil.parse(beginTime), DatePattern.PURE_DATE_PATTERN) + "-"
-                + DateUtil.format(DateUtil.parse(endTime), DatePattern.PURE_DATE_PATTERN) + ".xlsx";
+                + DateUtil.format(DateUtil.parse(endTime), DatePattern.PURE_DATE_PATTERN) + ".xls";
         FileOutputStream fos = new FileOutputStream(fileRootPath + excelDir + fileName);
         workbook.write(fos);
         fos.close();

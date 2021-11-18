@@ -63,10 +63,13 @@ email:
   # # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
   # password: XCBAHJVMCJJTKJYO
 
-  myEmailAddress: dirac_001@163.com
-  userName: dirac_001
+#  myEmailAddress: dirac_001@163.com
+#  userName: dirac_001
+  myEmailAddress: sdswsqk@163.com
+  userName: sdswsqk
+  password: MITYBZAGLKHATXCV
   # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
-  password: SGBHEKUXXLAQDCPO
+#  password: SGBHEKUXXLAQDCPO
   validate: true
   file-path: D:/file/email/
   host: http://127.0.0.1:9090/excel-download/email/

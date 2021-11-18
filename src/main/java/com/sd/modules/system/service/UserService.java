@@ -45,4 +45,6 @@ public interface UserService {
 //
 //    //删除单条记录
 //    void deleteUser(User user);
+
+//    int insertDutyRole(DutyRole dutyRole);
 }

@@ -18,22 +18,22 @@ import java.nio.charset.Charset;
  * @author Chen Hualiang
  * @create 2020-10-12 10:18
  */
-@Configuration
+//@Configuration
 public class DutyWebMvcConfigurer implements WebMvcConfigurer {
 //    @Value("${duty.allowedOrigins}")
 //    private String allowedOrigins;
 
     @Override
     public void addCorsMappings(CorsRegistry registry){
-        registry.addMapping("/**")
-                //放行哪些原始域
-                .allowedOrigins("*")
-                //放行哪些请求方式
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
-                //是否发送Cookie信息
-                .allowCredentials(true)
-                .maxAge(3600)
-                .allowedHeaders("Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,Authorization,Token");
+//        registry.addMapping("/**")
+//                //放行哪些原始域
+//                .allowedOrigins("*")
+//                //放行哪些请求方式
+//                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+//                //是否发送Cookie信息
+//                .allowCredentials(true)
+//                .maxAge(3600)
+//                .allowedHeaders("Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,Authorization,Token");
 
 //        registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*").allowCredentials(true).maxAge(3600).allowedMethods("*");
     }
@@ -47,11 +47,11 @@ public class DutyWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyHandlerInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/api/login","/api/systemLogout","/api/dutyQuery/getDutyBb","/api/getDuty","/api/file/GetDutyDoc",
-                        "/api/file/GetDutyMat","/api/file/GetDutyAnno","/api/email/getEmails","/api/communication/getCommunication","/api/getDutyForDp",
-                        "/api/phone/getCommunication","/api/phone/getDutyBb","/api/getAddvcdStcd","/api/getCommunicationNew");
+//        registry.addInterceptor(new MyHandlerInterceptor())
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/api/login","/api/systemLogout","/api/dutyQuery/getDutyBb","/api/getDuty","/api/file/GetDutyDoc",
+//                        "/api/file/GetDutyMat","/api/file/GetDutyAnno","/api/email/getEmails","/api/communication/getCommunication","/api/getDutyForDp",
+//                        "/api/phone/getCommunication","/api/phone/getDutyBb","/api/getAddvcdStcd","/api/getCommunicationNew");
 
     }
 }

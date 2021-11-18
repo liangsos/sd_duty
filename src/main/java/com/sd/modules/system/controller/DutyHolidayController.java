@@ -25,6 +25,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/dutyHoliday")
+@CrossOrigin
 @Api(tags = "法定假管理")
 public class DutyHolidayController {
 

@@ -34,5 +34,5 @@ public class Constants {
     /**
      * 允许跨域请求路径
      */
-    public static final String ALLOWEDORIGINS = "http://127.0.0.1:5500";
+    public static final String ALLOWEDORIGINS = "http://127.0.0.1:5502";
 }

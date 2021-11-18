@@ -30,7 +30,7 @@ public class RestResponse extends HashMap<String,Object> {
         RestResponse restResponse = new RestResponse();
         restResponse.setSuccess(false);
         restResponse.setMessage(message);
-        restResponse.setCode(0);
+        restResponse.setCode(1);
         return restResponse;
     }
 

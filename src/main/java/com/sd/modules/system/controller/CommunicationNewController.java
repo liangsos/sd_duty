@@ -6,9 +6,11 @@ import com.sd.modules.system.vo.DutyUserListVO;
 import com.sd.modules.system.vo.TableData;
 import com.sd.pojo.AddvcdStcd;
 import com.sd.pojo.Communication;
+import com.sd.realm.AuthRealm;
 import com.sd.util.RestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 @Api(tags = "通讯录管理(新)")
 public class CommunicationNewController {
     @Autowired
@@ -40,9 +43,9 @@ public class CommunicationNewController {
 
     @GetMapping("/getCommunicationNew")
     @ApiOperation("获取通讯录列表")
-    public RestResponse getCommunicationNew(){
+    public RestResponse getCommunicationNew(@RequestParam("addvcd") String addvcd){
         try {
-            List<Communication> communications = communicationService.getCommunication();
+            List<Communication> communications = communicationNewService.getCommunicationNew(addvcd);
 
             List<Map<String,Object>> dic = new ArrayList<>();
             for (Communication communication : communications) {
@@ -58,6 +61,36 @@ public class CommunicationNewController {
                 dic.add(map);
             }
             return  RestResponse.success().setData(dic);
+        }catch (Exception e){
+            e.printStackTrace();
+            return RestResponse.failure(e.getMessage());
+        }
+    }
+
+    /**
+     * 新增或修改通讯录人员
+     * @param communication
+     * @return
+     */
+    @PostMapping("/saveCommunication")
+    @ApiOperation("新增或修改通讯录人员")
+    public RestResponse saveCommunication(@RequestBody Communication communication){
+        try {
+            AuthRealm.ShiroUser user = (AuthRealm.ShiroUser) SecurityUtils.getSubject().getPrincipal();
+            Communication saveComm = new Communication();
+            saveComm.setId(communication.getId());
+            saveComm.setName(communication.getName());
+            saveComm.setUnit(communication.getUnit());
+            saveComm.setPosition(communication.getPosition());
+            saveComm.setTel(communication.getTel());
+            saveComm.setPhone(communication.getPhone());
+            saveComm.setDutyTel(communication.getDutyTel());
+            saveComm.setSort(communication.getSort());
+            saveComm.setUpdateUser(user.getuserName());
+            saveComm.setAddvcd(communication.getAddvcd());
+            int res = communicationService.saveCommunication(saveComm);
+
+            return RestResponse.success().setData(res);
         }catch (Exception e){
             e.printStackTrace();
             return RestResponse.failure(e.getMessage());

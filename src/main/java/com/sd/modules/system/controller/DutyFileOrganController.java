@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/dutyFileOrgan")
+@CrossOrigin
 @Api(tags = "来文单位")
 public class DutyFileOrganController {
     @Autowired

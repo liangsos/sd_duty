@@ -33,6 +33,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/dutyRecordUser")
+@CrossOrigin
 @Api(tags = "排班管理")
 public class DutyRecordUserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);

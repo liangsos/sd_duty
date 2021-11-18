@@ -62,11 +62,12 @@ email:
   myEmailAddress: sdswsqk@163.com
   userName: sdswsqk
   # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
-  password: XCBAHJVMCJJTKJYO
+  password: MITYBZAGLKHATXCV
   # myEmailAddress = dirac_007@163.com
   # userName = dirac_007
   # # 注意使用的是开通 SMTP、 POP、IMAP 协议的授权码
   # password = APYDOSTDPDUOEEHQ
   validate: true
-  file-path: D:/shandong_server/excel/email/
-  host: http://10.37.1.155:9003/excel-download/email/
+#  file-path: D:/shandong_server/excel/email/
+  file-path: D:/sdsq/dutyFile/email/
+  host: http://10.37.1.155:9003/sd-duty/dutyFile/email/

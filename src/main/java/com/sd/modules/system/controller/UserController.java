@@ -26,6 +26,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin
 @Api(tags = "用户相关")
 public class UserController {
 
@@ -111,8 +112,23 @@ public class UserController {
                     }
                     map.put("role",roleId);
                     dic.add(map);
-                }else{
-                    return RestResponse.failure("权限表有未分配值班人员角色权限用户，用户id为：" + userId);
+                }else{//已开通值班权限，但未分配人员角色，默认为普通值班人员，向角色权限表插数据
+                    DutyRole adminDutyRole = new DutyRole();
+                    adminDutyRole.setUserId(userId);
+                    adminDutyRole.setRoleId("3");
+                    adminDutyRole.setUserType("3");
+                    adminDutyRole.setAddvcd(user.getAddvcd());
+                    dutyRoleService.saveDutyRole(adminDutyRole);
+
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("userid",userId);
+                    map.put("userName",user.getUserName());
+                    map.put("realName",user.getRealName());
+                    map.put("phone",user.getUserTel());
+                    map.put("userType","值班人员");
+                    map.put("role","值班人员");
+                    dic.add(map);
+//                    return RestResponse.failure("权限表有未分配值班人员角色权限用户，用户id为：" + userId);
                 }
 
             }

@@ -27,6 +27,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/communication")
+@CrossOrigin
 @Api(tags = "通讯录管理")
 public class CommunicationController {
 

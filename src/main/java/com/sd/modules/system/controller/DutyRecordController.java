@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/dutyRecord")
+@CrossOrigin
 @Api(tags = "值班记录")
 public class DutyRecordController {
 

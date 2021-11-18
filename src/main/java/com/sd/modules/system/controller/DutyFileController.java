@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/file")
+@CrossOrigin
 @Api(tags = "文件管理")
 public class DutyFileController {
 
