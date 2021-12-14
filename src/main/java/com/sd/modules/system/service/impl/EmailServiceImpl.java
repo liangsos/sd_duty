@@ -76,7 +76,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public IPage<Email> getEmails(long current, long size, String beginTime, String endTime) {
-        readEmailSecheduled();
+//        readEmailSecheduled();
         Date begin = null;
         Date end = null;
         if (StrUtil.isNotBlank(beginTime)) {

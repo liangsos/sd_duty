@@ -50,11 +50,11 @@ duty:
 #  allowedOrigins: http://127.0.0.1:5500
 #  file-root-path:  D:/shandong_server/excel/
   file-root-path:  D:/sdsq/dutyFile/
-  file-host: http://10.37.1.155:9003/sd-duty/dutyFile/
+  file-host: http://10.37.1.79:9003/sd-duty/dutyFile/
 
 excel:
   path: excel/
-  host: http://10.37.1.155:9003/sd-duty/dutyFile/
+  host: http://10.37.1.79:9003/sd-duty/dutyFile/
 
 email:
   mailServerPOP3Host: pop.163.com
@@ -70,4 +70,4 @@ email:
   validate: true
 #  file-path: D:/shandong_server/excel/email/
   file-path: D:/sdsq/dutyFile/email/
-  host: http://10.37.1.155:9003/sd-duty/dutyFile/email/
+  host: http://10.37.1.79:9003/sd-duty/dutyFile/email/
