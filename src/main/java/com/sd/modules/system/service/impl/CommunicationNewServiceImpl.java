@@ -33,7 +33,7 @@ public class CommunicationNewServiceImpl implements CommunicationNewService {
             addvcd = "37";
         }
         QueryWrapper<Communication> qw = new QueryWrapper<>();
-        qw.select().eq("addvcd",addvcd);
+        qw.select().eq("addvcd",addvcd).orderByDesc("sort");
         List<Communication> list = communicationMapper.selectList(qw);
         return list;
     }
