@@ -60,6 +60,8 @@ public class CommunicationNewController {
                 map.put("sort",communication.getSort());
                 dic.add(map);
             }
+//            int total = communicationService.getCommunicationCount();
+//            dic.add(total, (Map<String, Object>) new HashMap<String, Object>().put("total",total));
             return  RestResponse.success().setData(dic);
         }catch (Exception e){
             e.printStackTrace();

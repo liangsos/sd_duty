@@ -24,8 +24,9 @@ spring:
 #    username: sa
 #    password: swjsxxcs#93@2019
   datasource:
-    url: jdbc:sqlserver://10.37.1.19:1433;Databasename=shandong_cfg
-    username: 17sa
+    url: jdbc:sqlserver://10.37.1.79:1433;Databasename=shandong_cfg
+#    url: jdbc:sqlserver://127.0.0.1:1433;Databasename=shandong_cfg
+    username: sa
     password: wq6694!
 
 
